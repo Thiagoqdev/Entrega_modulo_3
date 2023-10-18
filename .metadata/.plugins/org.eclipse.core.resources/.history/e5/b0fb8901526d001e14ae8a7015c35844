@@ -1,0 +1,56 @@
+package modelos;
+
+public class Pacotes {
+
+	int id;
+	String Periodo;
+	String Destino;
+	float Preco;
+
+	public Pacotes() {
+	}
+
+	public Pacotes(int id) {
+		this.id = id;
+	}
+
+	public Pacotes(int id, String periodo, String destino, float preco) {
+		this.id = id;
+		Periodo = periodo;
+		Destino = destino;
+		Preco = preco;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getPeriodo() {
+		return Periodo;
+	}
+
+	public void setPeriodo(String periodo) {
+		Periodo = periodo;
+	}
+
+	public String getDestino() {
+		return Destino;
+	}
+
+	public void setDestino(String destino) {
+		Destino = destino;
+	}
+
+	public float getPreco() {
+		return Preco;
+	}
+
+	public void setPreco(float preco) {
+		Preco = preco;
+	}
+
+}

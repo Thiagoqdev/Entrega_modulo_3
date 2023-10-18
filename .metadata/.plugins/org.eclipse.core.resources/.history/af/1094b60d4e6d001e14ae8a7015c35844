@@ -1,0 +1,219 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import connection.ConnectionMySQL;
+import modelos.Pacotes;
+
+public class Pacote_de_viagemDAO {
+	// create
+	public void create(Pacotes pacote_de_viagem) {
+
+		String sql = "insert into Pacotes_de_Viagens (Nome_pacote_de_viagem, Cpf_pacote_de_viagem, Email_pacote_de_viagem, Senha_pacote_de_viagem) values (?, ?, ?, ?)";
+
+		Connection conn = null;
+		PreparedStatement pstm = null;
+
+		try {
+			conn = ConnectionMySQL.createConnectionMySQL();
+
+			pstm = conn.prepareStatement(sql);
+
+			pstm.setString(1, pacote_de_viagem.getNome_pacote_de_viagem());
+			pstm.setString(2, pacote_de_viagem.getCpf_pacote_de_viagem());
+			pstm.setString(3, pacote_de_viagem.getEmail_pacote_de_viagem());
+			pstm.setString(4, pacote_de_viagem.getSenha_pacote_de_viagem());
+
+			pstm.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	// read
+
+	public List<Pacotes> read() {
+		List<Pacotes> Pacote_de_viagem = new ArrayList<Pacotes>();
+		String sql = "select * from Pacote_de_viagem";
+
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+
+		try {
+
+			conn = ConnectionMySQL.createConnectionMySQL();
+
+			pstm = conn.prepareStatement(sql);
+
+			rset = pstm.executeQuery();
+
+			while (rset.next()) {
+				Pacotes pacote_de_viagem = new Pacotes();
+
+				pacote_de_viagem.setId(rset.getInt("Id_pacote_de_viagem"));
+				pacote_de_viagem.setNome_pacote_de_viagem(rset.getString("Nome_pacote_de_viagem"));
+				pacote_de_viagem.setEmail_pacote_de_viagem(rset.getString("Email_pacote_de_viagem"));
+				pacote_de_viagem.setSenha_pacote_de_viagem(rset.getString("Senha_pacote_de_viagem"));
+				pacote_de_viagem.setCpf_pacote_de_viagem(rset.getString("CPF_pacote_de_viagem"));
+
+				Pacote_de_viagem.add(pacote_de_viagem);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return Pacote_de_viagem;
+	}
+
+	// Update
+
+	public void update(Pacotes pacote_de_viagem) {
+		String sql = "UPDATE Pacote_de_viagem set Nome_pacote_de_viagem = ?, Cpf_pacote_de_viagem = ?, Email_pacote_de_viagem = ?, Senha_pacote_de_viagem = ? WHERE id_pacote_de_viagem = ?";
+
+		Connection conn = null;
+		PreparedStatement pstm = null;
+
+		try {
+
+			conn = ConnectionMySQL.createConnectionMySQL();
+
+			pstm = conn.prepareStatement(sql);
+
+			pstm.setString(1, pacote_de_viagem.getNome_pacote_de_viagem());
+			pstm.setString(2, pacote_de_viagem.getCpf_pacote_de_viagem());
+			pstm.setString(3, pacote_de_viagem.getEmail_pacote_de_viagem());
+			pstm.setString(4, pacote_de_viagem.getSenha_pacote_de_viagem());
+			pstm.setInt(5, pacote_de_viagem.getId());
+
+			pstm.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
+	//delete
+	
+	public void delete(int id) {
+		String sql = "DELETE FROM Pacote_de_viagem WHERE Id_pacote_de_viagem = ?";
+
+		Connection conn = null;
+		PreparedStatement pstm = null;
+
+		try {
+
+			conn = ConnectionMySQL.createConnectionMySQL();
+
+			pstm = conn.prepareStatement(sql);
+
+			pstm.setInt(1, id);
+
+			pstm.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
+	//readByid
+	
+	public Pacotes readById(int id) {
+		Pacotes pacote_de_viagem = new Pacotes();
+		String sql = "select * from Pacote_de_viagem WHERE Id_pacote_de_viagem = ?";
+
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rset = null;
+
+		try {
+			conn = ConnectionMySQL.createConnectionMySQL();
+
+			pstm = conn.prepareStatement(sql);
+			
+			pstm.setInt(1, id);
+			
+			rset = pstm.executeQuery();
+			
+			rset.next();
+			
+			pacote_de_viagem.setId(rset.getInt("ID_pacote_de_viagem"));
+			pacote_de_viagem.setNome_pacote_de_viagem(rset.getString("Nome_pacote_de_viagem"));
+			pacote_de_viagem.setEmail_pacote_de_viagem(rset.getString("Email_pacote_de_viagem"));
+			pacote_de_viagem.setSenha_pacote_de_viagem(rset.getString("Senha_pacote_de_viagem"));
+			pacote_de_viagem.setCpf_pacote_de_viagem(rset.getString("Cpf_pacote_de_viagem"));
+
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return pacote_de_viagem;
+	}
+	
+	
+}

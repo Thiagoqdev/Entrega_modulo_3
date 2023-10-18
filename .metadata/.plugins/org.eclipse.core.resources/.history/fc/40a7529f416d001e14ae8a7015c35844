@@ -1,0 +1,60 @@
+package crud;
+
+import java.util.Scanner;
+
+import dao.ClienteDAO;
+
+import modelos.Clientes;
+
+public class ClientesCRUD {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		ClienteDAO clienteDAO = new ClienteDAO();
+		Scanner s = new Scanner(System.in);
+
+		int opcao = 0, id = 0;
+
+		String nome, email, cpf, senha;
+
+		do {
+
+			System.out.println("\n============================== CLIENTES =================================\n");
+			System.out.println("1-CRIAR   2-CONSULTAR   3-ATUALIZAR   4-DELETAR   5-CONSULTAR POR ID  0-SAIR");
+			opcao = s.nextInt();
+			s.nextLine();
+
+			switch (opcao) {
+			case 1:
+
+				System.out.println("Digite o nome:");
+				nome = s.nextLine();
+				System.out.println("Digite o CPF:");
+				cpf = s.nextLine();
+				System.out.println("Digite o email:");
+				email = s.nextLine();
+				System.out.println("Digite a senha:");
+				senha = s.nextLine();
+
+				Clientes cliente1 = new Clientes(nome, cpf, email, senha);
+				clienteDAO.create(cliente1);
+
+				break;
+
+			case 2:
+				
+				clienteDAO.read();
+
+				break;
+
+			default:
+			}
+
+		} while (opcao != 0);
+
+		System.out.println("Até mais!");
+		s.close();
+
+	}
+}

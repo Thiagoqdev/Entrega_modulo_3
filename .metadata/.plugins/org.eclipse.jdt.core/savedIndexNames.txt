@@ -1,0 +1,5 @@
+INDEX VERSION 1.132+D:\Entregas_modulos\Explore e Descubra\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+4199737540.index
+3155382045.index
+3069548762.index

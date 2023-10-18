@@ -1,0 +1,58 @@
+package modelos;
+
+public class Compras {
+
+	int id;
+	String Data_compra;
+	Clientes cliente;
+	Pacotes pacoteDeViagem;
+
+	public Compras() {
+	}
+
+	public Compras(int id, String data_compra, Clientes cliente, Pacotes pacoteDeViagem) {
+		this.id = id;
+		Data_compra = data_compra;
+		this.cliente = cliente;
+		this.pacoteDeViagem = pacoteDeViagem;
+	}
+
+	public Compras(String data_compra, Clientes cliente, Pacotes pacoteDeViagem) {
+		Data_compra = data_compra;
+		this.cliente = cliente;
+		this.pacoteDeViagem = pacoteDeViagem;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getData_compra() {
+		return Data_compra;
+	}
+
+	public void setData_compra(String data_compra) {
+		Data_compra = data_compra;
+	}
+
+	public Clientes getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Clientes cliente) {
+		this.cliente = cliente;
+	}
+
+	public Pacotes getPacoteDeViagem() {
+		return pacoteDeViagem;
+	}
+
+	public void setPacoteDeViagem(Pacotes pacoteDeViagem) {
+		this.pacoteDeViagem = pacoteDeViagem;
+	}
+
+}

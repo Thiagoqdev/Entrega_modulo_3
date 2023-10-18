@@ -1,0 +1,47 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import connection.ConnectionMySQL;
+import modelos.Clientes;
+
+public class ClienteDAO {
+	// create
+	public void create(Clientes cliente) {
+
+		String sql = "insert into Clientes (Nome_cliente, Cpf_cliente, Email_cliente, Senha_cliente) values (?, ?, ?, ?)";
+
+		Connection conn = null;
+		PreparedStatement pstm = null;
+
+		try {
+			conn = ConnectionMySQL.createConnectionMySQL();
+
+			pstm = conn.prepareStatement(sql);
+
+			pstm.setString(1, cliente.getNome_cliente());
+			pstm.setString(2, cliente.getCpf_cliente());
+			pstm.setString(3, cliente.getEmail_cliente());
+			pstm.setString(4, cliente.getSenha_cliente());
+
+			pstm.execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+}

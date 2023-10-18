@@ -1,0 +1,41 @@
+package dao;
+
+import java.util.List;
+import java.util.ArrayList;
+
+import modelos.Clientes;
+
+public class ClienteDAO {
+
+	// metodo Create
+
+	public void create(Clientes cliente) {
+		System.out.println("** Create ***");
+
+	}
+
+	// metodo Read
+	public List<Clientes> read() {
+		List<Clientes> clientes = new ArrayList<Clientes>();
+		System.out.println("** Read ***");
+		
+		return clientes;
+	}
+
+	public void update(Clientes cliente) {
+		System.out.println("** Update ***");
+	}
+
+	// metodo delete
+	public void delete(int id) {
+		System.out.println("** Delete ***");
+	}
+
+	// metodo ler por id
+	public Clientes readById(int id) {
+		System.out.println("** READ BY ID ***");
+
+		return new Clientes();
+	}
+
+}

@@ -1,0 +1,13 @@
+package modelos;
+
+public class Compras {
+
+	int id;
+	String Data_compras;
+	Clientes cliente;
+	Pacotes pacoteDeViagem;
+
+	public Compras() {
+	}
+
+	
